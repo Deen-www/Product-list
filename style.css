@@ -1,0 +1,173 @@
+*{
+  
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  
+  --button-bg: hsl(14, 86%, 42%);
+  --Green: hsl(159, 69%, 38%);
+
+  --Rose-50: hsl(20, 50%, 98%);
+  --body-bg: hsl(13, 31%, 94%);
+  --paragraph-col: hsl(14, 25%, 72%);
+  --Rose-400: hsl(7, 20%, 60%);
+  --Rose-500: hsl(12, 20%, 44%);
+  --heading-col: hsl(14, 65%, 9%);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--body-bg);
+  font-family: "Red Hat Text", sans-serif;
+  font-weight: 400;
+  padding: 16px;
+}
+
+.brand {
+  color: var(--heading-col);
+}
+
+/* FIRST SECTION */
+.product-grid-section {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+}
+
+.product {
+  
+  background: var(--body-bg);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  margin: 40px auto 0;
+  transition: transform 0.5s ease;
+  padding-inline: 10px;
+  padding-block: 10px;
+  z-index: 1;
+} 
+
+.product:hover {
+  transform: translateY(-5px);
+  background: var(--Rose-50);
+}
+
+.image-product {
+  position: relative;
+  width: 100%;
+}
+
+.image-product img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.add-to-cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  background: var(--Rose-50);
+  border: 1px solid var(--Rose-500);
+  width: 140px;
+  height: 44px;
+  padding: 10px 0;
+  border-radius: 30px;
+  cursor: pointer;
+
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.add-to-cart button {
+  background: none;
+  border: none;
+  color: var(--heading-col);
+  font-weight: 500;
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.add-to-cart img {
+  width: 100px;
+  max-width: 20px;
+}
+
+.quantity {
+  display: none;
+
+  background: var(--button-bg);
+  width: 140px;
+  height: 44px;
+  padding: 10px 0;
+  border-radius: 30px;
+  cursor: pointer;
+
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.quantity.show {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.quantity img {
+  width: 100%;
+  max-width: 12px;
+}
+
+.quantity span {
+  color: var(--Rose-50);
+}
+
+.quantity button {
+  width: 22px;
+  height: 22px;
+  background: none;
+  border: 2px solid var(--Rose-50);
+  border-radius: 50%;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-info {
+  margin-top: 50px;
+}
+
+.product-info p {
+  margin-bottom: 6px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--paragraph-col);
+}
+
+.product-info h1 {
+  font-size: 22px;
+  color: var(--heading-col);
+  margin-bottom: 6px;
+}
+
+.product-info strong {
+  font-size: 18px;
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>Product List</title>
+  
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;600;700&display=swap" rel="stylesheet">
+   
+   <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!--BRAND NAME-->
+  <div class="brand">
+    <h2>Deserts</h2>
+  </div>
+
+  <!--MAIN CONTENTS-->
+  <main class="container">
+
+    <!--FIRST-SECTION-->
+    <section class = "products-grid-section">
+
+      <!--FIRST-PRODUCT DIV-->
+      <div class="product">
+        <!--PRODUCT-IMAGE-->
+        <div class="image-product">
+          
+          <img src="assets/images/image-waffle-mobile.jpg" alt="waffle with berries">
+          
+          <!--ADD TO CART BUTTON-->
+          <div class="add-to-cart">
+
+            <img src="assets/icons/icon-add-to-cart.svg" alt="cart-icon" class="cart-icon">
+            <button class="add-to-cart-btn">Add to cart</button>
+  
+          </div>
+          <!--QUANTITY-->
+          <div class="quantity">
+
+            <button class="decrease-icon"><img src="assets/icons/icon-decrement-quantity.svg" alt=""></button>
+            <span class="qtn">0</span>
+            <button class="increase-icon"><img src="assets/icons/icon-increment-quantity.svg" alt=""></button>
+
+          </div>
+        </div>
+
+        <!--PRODUCT-INFO-->
+        <div class="product-info">
+          
+          <p>Waffle</p>
+          <h1>Waffle with Berries</h1>
+          <strong>$6.50</strong>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+  
+  
+  <script src="script.js"></script>
+</body>
+
+</html>
