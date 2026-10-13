@@ -26,15 +26,21 @@ body {
   background: var(--body-bg);
   font-family: "Red Hat Text", sans-serif;
   font-weight: 400;
-  padding: 16px;
 }
 
 .brand {
   color: var(--heading-col);
+  padding-inline-start: 20px;
+  margin: 32px auto 0;
+}
+
+.container {
+  width: 100%;
+  padding-inline: 20px;
 }
 
 /* FIRST SECTION */
-.product-grid-section {
+.products-grid-section {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 10px;
@@ -46,7 +52,7 @@ body {
   border-radius: 12px;
   width: 100%;
   max-width: 400px;
-  margin: 40px auto 0;
+  margin: 28px auto 0;
   transition: transform 0.5s ease;
   padding-inline: 10px;
   padding-block: 10px;
@@ -66,6 +72,7 @@ body {
 .image-product img {
   display: block;
   width: 100%;
+  height: auto;
   object-fit: cover;
   border-radius: 12px;
 }
@@ -74,16 +81,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 8px;
 
   background: var(--Rose-50);
   border: 1px solid var(--Rose-500);
-  width: 100%;
+  width: 80%;
   max-width: 140px;
-  height: 100%;
-  max-height: 44px;
-  padding: 10px 0;
+  height: auto;
+  padding: 10px 12px;
   border-radius: 30px;
+  white-space: nowrap;
   cursor: pointer;
 
   position: absolute;
@@ -97,7 +104,7 @@ body {
   border: none;
   color: var(--heading-col);
   font-weight: 500;
-  font-size: 14px;
+  font-size: clamp(10px, 2vw, 14px);
   padding: 0;
   margin: 0;
   cursor: pointer;
@@ -112,9 +119,10 @@ body {
   display: none;
 
   background: var(--button-bg);
-  width: 140px;
-  height: 44px;
-  padding: 10px 0;
+  width: 80%;
+  max-width: 140px;
+  height: auto;
+  padding: 10px 12px;
   border-radius: 30px;
   cursor: pointer;
 
@@ -159,17 +167,105 @@ body {
 
 .product-info p {
   margin-bottom: 6px;
-  font-size: 18px;
+  font-size: clamp(14px, 2vw, 16px);
   font-weight: 600;
   color: var(--paragraph-col);
 }
 
 .product-info h1 {
-  font-size: 22px;
+  font-size: clamp(14px, 2vw, 18px);
   color: var(--heading-col);
   margin-bottom: 6px;
 }
 
 .product-info strong {
-  font-size: 18px;
+  font-size: clamp(12px, 2vw, 18px);
+  color: var(--button-bg);
+}
+
+/* SECOND SECTION */
+.cart-section {
+  width: 100%;
+  max-height: 400px;
+  max-width: 400px;
+  background: var(--Rose-50);
+  border-radius: 12px;
+  margin: 30px auto 30px;
+  padding: 24px;
+  transition: transform 0.5s ease;
+}
+
+.cart-section:hover {
+  transform: translateY(-5px);
+}
+
+.cart-count {
+  margin-bottom: 40px;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--button-bg);
+}
+
+.cart-illustration-icon {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.cart-illustration-icon img {
+  width: 150px;
+}
+
+.empty-cart-message {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--paragraph-col);
+}
+
+
+/*MEDIA QUERRY*/
+
+/* @ 768px */
+@media (min-width: 767px) {
+
+  .brand {
+    width: 100%;
+    max-width: 1400px;
+    margin: 40px auto 0;
+  }
+
+  .container {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    max-width: 1400px;
+    margin: auto;
+    padding-block: 24px;
+  }
+
+  /* FIRST SECTION */
+.products-grid-section {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 5px;
+}
+
+.product {
+  width: 100%;
+  margin: 0;
+}
+
+/* SECOND SECTION */
+.cart-section {
+  width: 100%;
+  max-height: 400px;
+  max-width: 400px;
+  background: var(--Rose-50);
+  border-radius: 12px;
+  margin-top: 0;
+}
+
 }
