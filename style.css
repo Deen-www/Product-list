@@ -228,8 +228,8 @@ body {
 
 /*MEDIA QUERRY*/
 
-/* @ 768px */
-@media (min-width: 767px) {
+/* @ 650px */
+@media (min-width: 650px) {
 
   .brand {
     width: 100%;
@@ -249,7 +249,7 @@ body {
   /* FIRST SECTION */
 .products-grid-section {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 5px;
 }
 
@@ -267,5 +267,13 @@ body {
   border-radius: 12px;
   margin-top: 0;
 }
+
+}
+
+@media (min-width: 1024px) {
+
+ .products-grid-section {
+  grid-template-columns: repeat(3, 1fr);
+ }
 
 }
