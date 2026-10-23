@@ -134,7 +134,7 @@ body {
 
 .quantity.show {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -201,9 +201,13 @@ body {
 
 .cart-count {
   margin-bottom: 40px;
-  font-size: 28px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 600;
   color: var(--button-bg);
+}
+
+.count {
+  font-size: 24px;
 }
 
 .cart-illustration-icon {
