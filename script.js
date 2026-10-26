@@ -90,9 +90,19 @@ addToCartBtns.forEach(button => {
       carbonNeutral.classList.add("show");
       confirmOrderBtn.classList.add("show");
 
+      //Let's get the total of all products
+      const productsTotal = document.getElementById("products-total");
+
+      const totals = cart.reduce((accumulator, product) => {
+      return accumulator + (product.price * product.quantity);
+      }, 0)
+
+      productsTotal.textContent = totals;
+
 
     })
 })
+
 
 
 //Let's get the increament and decreament count
