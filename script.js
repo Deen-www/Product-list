@@ -7,6 +7,17 @@ let confirmOrderBtn = document.querySelector(".confirm-order-btn");
 let cartIllustrationIcon = document.querySelector(".cart-illustration-icon");
 let cartMessage = document.querySelector(".cart-message");
 
+//Update the entire cart total function
+function updateCartTotal() {
+   const productsTotal = document.getElementById("products-total");
+
+      let totals = cart.reduce((acc, product) => {
+      return acc + (product.price * product.quantity);
+      }, 0)
+
+      productsTotal.textContent = totals;
+}
+
 
 // Let's get the buttons respond to click and make cart to count
 let totalCount = 0;
@@ -63,10 +74,10 @@ addToCartBtns.forEach(button => {
         let div = document.createElement("div");
           // these will be inside the div
           let quantity = document.createElement("strong");
-          quantity.id = "qtn";
+          quantity.className = "qtn";
           let price = document.createElement("p");
           let totalQuantity = document.createElement("strong");
-          totalQuantity.id = "total-qtn";
+          totalQuantity.className = "total-qtn";
 
       let deleteIcon = document.createElement("img");
 
@@ -90,15 +101,8 @@ addToCartBtns.forEach(button => {
       carbonNeutral.classList.add("show");
       confirmOrderBtn.classList.add("show");
 
-      //Let's get the total of all products
-      const productsTotal = document.getElementById("products-total");
-
-      const totals = cart.reduce((accumulator, product) => {
-      return accumulator + (product.price * product.quantity);
-      }, 0)
-
-      productsTotal.textContent = totals;
-
+      //Update the total
+      updateCartTotal();
 
     })
 })
@@ -115,10 +119,33 @@ increament.forEach(increament => {
 
       let product = e.currentTarget.closest(".product");
       let qtn = product.querySelector(".qtn");
+      let productName = product.dataset.name;
 
       qtn.textContent = Number(qtn.textContent) + 1;
       totalCount++;
       cartCount.textContent = totalCount;
+
+      let found = cart.find(item => item.name === productName);
+      
+      let cartProducts = document.querySelectorAll(".display-product");
+      cartProducts.forEach(cartProduct => {
+
+         let heading = cartProduct.querySelector("h3");
+         let totalQuantity = cartProduct.querySelector(".total-qtn");
+         let quantity = cartProduct.querySelector(".qtn");
+
+         if(heading.textContent === productName) {
+            found.quantity++;
+            quantity.textContent = found.quantity + "x";
+
+            let subTotal = found.price * found.quantity;
+            totalQuantity.textContent = "$" + subTotal;
+
+            updateCartTotal();
+
+         }
+      })
+
    })
 })
 

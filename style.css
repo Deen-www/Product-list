@@ -216,11 +216,11 @@ body {
   gap: 10px;
 }
 
-#product-details div p, #total-qtn {
+#product-details div p, .total-qtn {
   color: var(--paragraph-col);
 }
 
-#qtn {
+.qtn {
   color: var(--button-bg);
 }
 
@@ -259,6 +259,7 @@ body {
 .carbon-neutral.show {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 5px;
   margin-top: 18px;
   padding: 12px 0;
