@@ -76,20 +76,20 @@ addToCartBtns.forEach(button => {
           let quantity = document.createElement("strong");
           quantity.className = "qtn";
           let price = document.createElement("p");
-          let totalQuantity = document.createElement("strong");
-          totalQuantity.className = "total-qtn";
+          let subTotal = document.createElement("strong");
+          subTotal.className = "total";
 
       let deleteIcon = document.createElement("img");
 
       heading.textContent = data.name;
       quantity.textContent = data.quantity + "x";
       price.textContent = "@" + data.price;
-      totalQuantity.textContent = "$" + total;
+      subTotal.textContent = "$" + total;
       deleteIcon.src = data.removeIcon;
       
       div.appendChild(quantity);
       div.appendChild(price);
-      div.appendChild(totalQuantity);
+      div.appendChild(subTotal);
       productInfo.appendChild(heading);
       productInfo.appendChild(div);
       displayProduct.appendChild(productInfo);
@@ -124,23 +124,26 @@ increament.forEach(increament => {
       qtn.textContent = Number(qtn.textContent) + 1;
       totalCount++;
       cartCount.textContent = totalCount;
-
+      
+      //Find product in the cart
       let found = cart.find(item => item.name === productName);
       
+      //Selecting element of a className display-product
       let cartProducts = document.querySelectorAll(".display-product");
       cartProducts.forEach(cartProduct => {
 
          let heading = cartProduct.querySelector("h3");
-         let totalQuantity = cartProduct.querySelector(".total-qtn");
+         let subTotal = cartProduct.querySelector(".total");
          let quantity = cartProduct.querySelector(".qtn");
 
          if(heading.textContent === productName) {
             found.quantity++;
             quantity.textContent = found.quantity + "x";
 
-            let subTotal = found.price * found.quantity;
-            totalQuantity.textContent = "$" + subTotal;
-
+            let total = found.price * found.quantity;
+            subTotal.textContent = "$" + total;
+            
+            //Update cart total
             updateCartTotal();
 
          }
@@ -157,20 +160,87 @@ decreament.forEach(decreament => {
       let addToCartWrapper = product.querySelector(".add-to-cart");
       let quantityWrapper = product.querySelector(".quantity");
       let qtn = product.querySelector(".qtn");
+      let productName = product.dataset.name;
+
+      //Find the product in the cart
+      let found = cart.find(item => item.name === productName);
 
       if(Number(qtn.textContent) !== 1) {
 
             qtn.textContent = Number(qtn.textContent) - 1;
+
             totalCount--;
             cartCount.textContent = totalCount;
+
+            found.quantity--;
             
       } else {
+
+            //Remove product from cart array
+            let index = cart.findIndex(item => item.name === productName);
+
+            if(index !== -1) {
+               cart.splice(index, 1);
+            }
+
+            //Remove product from the cart HTML
+            let cartProducts = document.querySelectorAll(".display-product");
+
+            cartProducts.forEach(cartProduct => {
+
+               let heading = cartProduct.querySelector("h3");
+
+               if(heading.textContent === productName) {
+
+                  cartProduct.remove();
+               }
+            })
             
-            qtn.textContent = "1";
+            //Update cart count
             totalCount--;
             cartCount.textContent = totalCount;
+
+            //Restore the product card
+            qtn.textContent = "1";
             quantityWrapper.classList.remove("show");
             addToCartWrapper.style.display = "flex";
+        }
+
+        //Update cart quantity and subtotal
+      
+        let cartProducts = document.querySelectorAll(".display-product");
+        cartProducts.forEach(cartProduct => {
+
+         let heading = cartProduct.querySelector("h3");
+         let subTotal = cartProduct.querySelector(".total");
+         let quantity = cartProduct.querySelector(".qtn");
+
+         if(heading.textContent === productName) {
+            
+            let found = cart.find(item => item.name === productName);
+
+            if(found) {
+              quantity.textContent = found.quantity + "x";
+            
+              let total = found.price * found.quantity;
+              subTotal.textContent = "$" + total;
+            }
+
+         }
+         
+      })
+
+      //Recalculate cart total
+      updateCartTotal();
+
+      //Handle an empty cart
+      if(cart.length === 0) {
+         cartIllustrationIcon.style.display = "flex";
+         cartMessage.style.display = "block";
+
+         confirmOrderBtn.classList.remove("show");
+         orderTotal.classList.remove("show");
+         carbonNeutral.classList.remove("show");
       }
 
    })

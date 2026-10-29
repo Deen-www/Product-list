@@ -216,7 +216,7 @@ body {
   gap: 10px;
 }
 
-#product-details div p, .total-qtn {
+#product-details div p, .total {
   color: var(--paragraph-col);
 }
 
