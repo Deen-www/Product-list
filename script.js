@@ -80,7 +80,6 @@ addToCartBtns.forEach(button => {
           subTotal.className = "total";
 
       let deleteIcon = document.createElement("img");
-
       heading.textContent = data.name;
       quantity.textContent = data.quantity + "x";
       price.textContent = "@" + data.price;
@@ -104,8 +103,57 @@ addToCartBtns.forEach(button => {
       //Update the total
       updateCartTotal();
 
+
+      //Let's get the delete product icon
+      deleteIcon.addEventListener("click", (e) => {
+
+      let product = e.currentTarget.closest(".display-product");
+
+      //Remove product from cart array
+      let index = cart.indexOf(data);
+      cart.splice(index, 1);
+
+      //Update cart count
+      totalCount -= Number(data.quantity);
+      cartCount.textContent = totalCount;
+
+      //Reset product quantity
+      qtn.textContent = 1;
+
+      //products total, price and quantity
+      let productsTotal = document.getElementById("products-total");
+      let priceQtn = data.price * data.quantity;
+      
+      //Subtract product subtotal from products total
+      productsTotal.textContent = Number(productsTotal.textContent) - Number(priceQtn);
+
+      //Remove product from HTML
+      product.remove();
+
+      //Update cart total
+      updateCartTotal();
+
+      //Handle empty cart
+      let remainingProduct = document.querySelector(".display");
+      if(remainingProduct.children.length === 0) {
+
+         confirmOrderBtn.classList.remove("show");
+         orderTotal.classList.remove("show");
+         carbonNeutral.classList.remove("show");
+
+         cartIllustrationIcon.style.display = "flex";
+         cartMessage.style.display = "block";
+      }
+
+      //Restore product card
+      quantityWrapper.classList.remove("show");
+      addToCartWrapper.style.display = "flex";
+      
+     })
+
     })
 })
+
 
 
 
