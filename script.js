@@ -293,3 +293,15 @@ decreament.forEach(decreament => {
 
    })
 })
+
+
+//Comfirmation order modal
+const overlay = document.querySelector(".overlay");
+const confirmationModal = document.querySelector(".order-confirmation-modal");
+
+//Let's get confirm order to respond to click
+confirmOrderBtn.addEventListener("click", () => {
+
+   overlay.classList.add("show");
+   confirmationModal.classList.add("show");
+})
