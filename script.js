@@ -67,7 +67,7 @@ addToCartBtns.forEach(button => {
 
       //displayProduct
       let productInfo = document.createElement("div");
-      productInfo.id = "product-details";
+       productInfo.id = "product-details";
 
         //These will be children to productInfo
         let heading = document.createElement("h3");
@@ -79,7 +79,11 @@ addToCartBtns.forEach(button => {
           let subTotal = document.createElement("strong");
           subTotal.className = "total";
 
-      let deleteIcon = document.createElement("img");
+      let deleteBtn = document.createElement("button");
+       deleteBtn.className = "delete-btn";
+       //This will be inside deleteBtn
+       let deleteIcon = document.createElement("img");
+
       heading.textContent = data.name;
       quantity.textContent = data.quantity + "x";
       price.textContent = "@" + data.price;
@@ -91,8 +95,9 @@ addToCartBtns.forEach(button => {
       div.appendChild(subTotal);
       productInfo.appendChild(heading);
       productInfo.appendChild(div);
+      deleteBtn.appendChild(deleteIcon);
       displayProduct.appendChild(productInfo);
-      displayProduct.appendChild(deleteIcon);
+      displayProduct.appendChild(deleteBtn);
 
       productContainer.appendChild(displayProduct);
 
@@ -105,7 +110,7 @@ addToCartBtns.forEach(button => {
 
 
       //Let's get the delete product icon
-      deleteIcon.addEventListener("click", (e) => {
+      deleteBtn.addEventListener("click", (e) => {
 
       let product = e.currentTarget.closest(".display-product");
 
