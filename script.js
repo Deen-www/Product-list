@@ -15,7 +15,7 @@ function updateCartTotal() {
       return acc + (product.price * product.quantity);
       }, 0)
 
-      productsTotal.textContent = totals;
+      productsTotal.textContent = totals.toFixed(2);
 }
 
 
@@ -33,6 +33,7 @@ addToCartBtns.forEach(button => {
       let qtn = product.querySelector(".qtn");
       let productName = product.dataset.name;
       let productPrice = Number(product.dataset.price);
+      let productImage = product.dataset.image;
       
       
       qtn.textContent = 1;
@@ -49,6 +50,7 @@ addToCartBtns.forEach(button => {
          name: productName,
          price: productPrice,
          quantity: qtn.textContent,
+         image: productImage,
          removeIcon: "assets/icons/icon-remove-item.svg"
       }
 
@@ -86,8 +88,8 @@ addToCartBtns.forEach(button => {
 
       heading.textContent = data.name;
       quantity.textContent = data.quantity + "x";
-      price.textContent = "@" + data.price;
-      subTotal.textContent = "$" + total;
+      price.textContent = "@" + data.price.toFixed(2);
+      subTotal.textContent = "$" + total.toFixed(2);
       deleteIcon.src = data.removeIcon;
       
       div.appendChild(quantity);
@@ -306,7 +308,70 @@ const confirmationModal = document.querySelector(".order-confirmation-modal");
 
 //Let's get confirm order to respond to click
 confirmOrderBtn.addEventListener("click", () => {
+   
+   //Looping through cart and create product elements
+   for(let eachProduct of cart) {
+      
+      //Let's select our empty container created in HTML
+      const orderDisplay = document.querySelector(".order-display");
 
+      //Creating a div container that'll be nested inside HTML element orderDisplay
+      let orderItem = document.createElement("div");
+       orderItem.className = "order-item";
+
+       //Creating orderItem children
+       let productInfo = document.createElement("div");
+        productInfo.className = "modal-product-info";
+       let subTotal = document.createElement("strong");
+        subTotal.className = "sub-total";
+
+       //Creating productInfo children
+       let thumbnalImage = document.createElement("img");
+       let container = document.createElement("div");
+        container.className = "container-div";
+       //Creating container children
+       let name = document.createElement("h4");
+       let priceQuantityContainer = document.createElement("div");
+       priceQuantityContainer.classList = "price-quantity";
+
+       // Creating priceQuantityContainer children
+       let modalQuantity = document.createElement("strong");
+       let modalPrice = document.createElement("p");
+
+
+       thumbnalImage.src = eachProduct.image;
+       name.textContent = eachProduct.name;
+       modalQuantity.textContent = eachProduct.quantity + "x";
+       modalPrice.textContent = "@ " + "$" + eachProduct.price.toFixed(2);
+       let total = eachProduct.price * eachProduct.quantity;
+       subTotal.textContent = "$" + total.toFixed(2);
+       
+
+       productInfo.appendChild(thumbnalImage);
+       container.appendChild(name);
+       priceQuantityContainer.appendChild(modalQuantity);
+       priceQuantityContainer.appendChild(modalPrice);
+       container.appendChild(priceQuantityContainer);
+       productInfo.appendChild(container);
+       orderItem.appendChild(productInfo);
+       orderItem.appendChild(subTotal);
+
+       orderDisplay.appendChild(orderItem);
+
+   }
+   
+   //Add modal and overlay
    overlay.classList.add("show");
    confirmationModal.classList.add("show");
+
+   //Order confirmation product total
+   const orderConfirmationTotal = document.getElementById("order-confirmation-products-total");
+
+   //Calculate products total
+   let productsTotal = cart.reduce((acc, product) => {
+     
+      return acc + (product.price * product.quantity);
+   }, 0)
+
+   orderConfirmationTotal.textContent = productsTotal.toFixed(2);
 })
