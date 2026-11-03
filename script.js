@@ -305,9 +305,10 @@ decreament.forEach(decreament => {
 //Comfirmation order modal
 const overlay = document.querySelector(".overlay");
 const confirmationModal = document.querySelector(".order-confirmation-modal");
+const confirmOrderButton = document.querySelector(".confirm-order");
 
 //Let's get confirm order to respond to click
-confirmOrderBtn.addEventListener("click", () => {
+confirmOrderButton.addEventListener("click", () => {
    
    //Looping through cart and create product elements
    for(let eachProduct of cart) {
@@ -374,4 +375,59 @@ confirmOrderBtn.addEventListener("click", () => {
    }, 0)
 
    orderConfirmationTotal.textContent = productsTotal.toFixed(2);
+})
+
+
+//Reset selected order
+const startNewOrderBtn = document.querySelector(".new-order-btn");
+
+startNewOrderBtn.addEventListener("click", () => {
+
+   //Reset cart items
+   cart.splice(0, cart.length);
+
+   //Remove modal and cart products from HTML
+   document.querySelectorAll(".order-item").forEach(product => product.remove());
+   document.querySelectorAll(".display-product").forEach(product => product.remove());
+
+   //Update cart count
+   totalCount = 0;
+   cartCount.textContent = totalCount;
+
+   //Update cart total
+   updateCartTotal();
+
+   //Update modal total
+   let orderConfirmationTotal = document.getElementById("order-confirmation-products-total");
+   orderConfirmationTotal.textContent = 0;
+
+   //Handle an empty cart
+   if(cart.length === 0) {
+    cartIllustrationIcon.style.display = "flex";
+    cartMessage.style.display = "block";
+
+    confirmOrderBtn.classList.remove("show");
+    orderTotal.classList.remove("show");
+    carbonNeutral.classList.remove("show");
+   }
+
+
+   //Remove modal and overlay
+    overlay.classList.remove("show");
+    confirmationModal.classList.remove("show");
+
+
+   //Restore the product card
+   const products = document.querySelectorAll(".product");
+   products.forEach(product => {
+
+   let qtn = product.querySelector(".qtn");
+   let quantityWrapper = product.querySelector(".quantity");
+   let addToCartWrapper = product.querySelector(".add-to-cart");
+
+   qtn.textContent = 1;
+   quantityWrapper.classList.remove("show");
+   addToCartWrapper.style.display = "flex";
+   })
+
 })

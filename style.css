@@ -348,6 +348,7 @@ body {
 
 .confirm-order-btn {
   display: none;
+
 }
 
 .confirm-order-btn.show {
@@ -357,6 +358,9 @@ body {
   text-align: center;
   margin-top: 18px;
   padding: 12px 0;
+  transition: background 0.3s ease;
+
+  
 
   button {
     background: none;
@@ -366,6 +370,11 @@ body {
     cursor: pointer;
   }
 }
+
+.confirm-order-btn:hover {
+  background: rgb(231, 170, 170);
+}
+
 
 .cart-illustration-icon {
 
@@ -470,6 +479,8 @@ body {
   border-radius: 28px;
   text-align: center;
   padding: 12px 0;
+  cursor: pointer;
+  transition: backgroung 0.3s ease;
 
   button {
     background: none;
@@ -477,7 +488,14 @@ body {
     color: white;
     font-size: clamp(5px, 2vw, 16px);
     white-space: nowrap;
+    cursor: pointer;
   }
+
+
+}
+
+.new-order-btn-container:hover {
+  background: rgb(231, 170, 170);
 }
 
 
