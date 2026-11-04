@@ -77,6 +77,10 @@ body {
   border-radius: 12px;
 }
 
+.pi.show {
+  border: 2px solid var(--button-bg);
+}
+
 .add-to-cart {
   display: flex;
   align-items: center;

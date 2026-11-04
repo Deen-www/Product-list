@@ -31,6 +31,7 @@ addToCartBtns.forEach(button => {
       let addToCartWrapper = product.querySelector(".add-to-cart");
       let quantityWrapper = product.querySelector(".quantity");
       let qtn = product.querySelector(".qtn");
+      let border = product.querySelector(".pi");
       let productName = product.dataset.name;
       let productPrice = Number(product.dataset.price);
       let productImage = product.dataset.image;
@@ -41,6 +42,7 @@ addToCartBtns.forEach(button => {
       quantityWrapper.classList.add("show");
       cartIllustrationIcon.style.display = "none";
       cartMessage.style.display = "none";
+      border.classList.add("show");
 
       totalCount++;
       cartCount.textContent = totalCount;
@@ -154,6 +156,7 @@ addToCartBtns.forEach(button => {
 
       //Restore product card
       quantityWrapper.classList.remove("show");
+      border.classList.remove("show");
       addToCartWrapper.style.display = "flex";
       
      })
@@ -215,6 +218,7 @@ decreament.forEach(decreament => {
       let addToCartWrapper = product.querySelector(".add-to-cart");
       let quantityWrapper = product.querySelector(".quantity");
       let qtn = product.querySelector(".qtn");
+      let border = product.querySelector(".pi");
       let productName = product.dataset.name;
 
       //Find the product in the cart
@@ -258,6 +262,7 @@ decreament.forEach(decreament => {
             //Restore the product card
             qtn.textContent = "1";
             quantityWrapper.classList.remove("show");
+            border.classList.remove("show");
             addToCartWrapper.style.display = "flex";
         }
 
@@ -424,9 +429,11 @@ startNewOrderBtn.addEventListener("click", () => {
    let qtn = product.querySelector(".qtn");
    let quantityWrapper = product.querySelector(".quantity");
    let addToCartWrapper = product.querySelector(".add-to-cart");
+   let border = product.querySelector(".pi");
 
    qtn.textContent = 1;
    quantityWrapper.classList.remove("show");
+   border.classList.remove("show");
    addToCartWrapper.style.display = "flex";
    })
 
